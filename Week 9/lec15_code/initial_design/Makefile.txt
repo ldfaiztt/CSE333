@@ -1,0 +1,11 @@
+SOURCES = Cash.cc Stock.cc DividendStock.cc useassets.cc
+
+all: useassets
+
+useassets: $(SOURCES)
+	g++ -g -Wall -std=gnu++0x -o $@ $^
+
+clean: FORCE
+	/bin/rm -f -r *~ *.o useassets useassets.dSYM
+
+FORCE:

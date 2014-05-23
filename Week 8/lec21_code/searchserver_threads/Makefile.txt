@@ -1,0 +1,22 @@
+CFLAGS = -Wall -std=gnu++0x -I. -g
+LDFLAGS = -L. -L./libhw1 -L./libhw2 -L./libhw3 -lhw3 -lhw2 -lhw1 -lpthread
+
+all: searchserver
+
+searchserver: searchserver.o SocketUtils.o SocketLineReader.o
+	g++ $(CFLAGS) -o searchserver searchserver.o SocketUtils.o \
+	SocketLineReader.o $(LDFLAGS)
+
+searchserver.o: searchserver.cc
+	g++ $(CFLAGS) -o searchserver.o -c searchserver.cc
+
+SocketUtils.o: SocketUtils.cc
+	g++ $(CFLAGS) -o SocketUtils.o -c SocketUtils.cc
+
+SocketLineReader.o: SocketLineReader.cc
+	g++ $(CFLAGS) -o SocketLineReader.o -c SocketLineReader.cc
+
+clean: FORCE
+	/bin/rm -f *.o *~ searchserver
+
+FORCE:

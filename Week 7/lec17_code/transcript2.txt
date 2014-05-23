@@ -1,0 +1,31 @@
+# do some "forward" DNS lookups.  "man dig"
+
+dig www.google.com
+dig @ns1.google.com www.google.com
+dig any @ns1.google.com google.com
+dig any @june.cs.washington.edu cs.washington.edu
+
+# lookup well-known alias for local machine
+dig localhost.localdomain
+
+# do a reverse DNS lookup
+dig -x 128.95.4.1
+
+# run a trace of the DNS lookup path, disabling recursion as a side-effect
+dig +trace www.cs.washington.edu
+
+# run netcat to open a listening socket on port 5543
+nc -l 5543
+
+                 # in a second window talk to it
+                 nc 127.0.0.1 5543
+                 anything typed in either window
+is displayed on both
+use ^D to shut down
+
+# sendreceive demo
+# window 1                    # window 2
+g++ -Wall sendreceive.cc
+                              nc -l 3456
+./a.out 127.0.0.1 3456
+                              type a message here, see it there

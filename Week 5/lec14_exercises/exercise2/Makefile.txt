@@ -1,0 +1,17 @@
+CC = g++
+CFLAGS = -g -Wall
+HEADERS = Triple.h
+OBJS =
+
+all: exercise2
+
+exercise1: clean exercise2.o $(OBJS) $(HEADERS)
+	$(CC) -o exercise2 exercise2.o $(OBJS) $(LDFLAGS)
+
+%.o: %.cc $(HEADERS)
+	$(CC) $(CFLAGS) -c $<
+
+clean: FORCE
+	/bin/rm -f *.o *~ exercise2
+
+FORCE:

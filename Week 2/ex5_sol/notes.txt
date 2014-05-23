@@ -1,0 +1,64 @@
+Fixes to the starter code:
+
+Bug fixes
+
+- VectorCreate: verify first malloc succeeds before using v.  Store
+  vector length in data structure.  Initialize all vector elements to
+  NULL to preserve the vector invariant.
+
+- Fix memory leak in VectorSet - need to free the old array.
+
+- Fix VectorSet to check for allocation failure if array is resized.
+
+- Fix assignment to prev in VectorSet.  Two bugs: nothing was stored
+  if the array was expanded, and the assignment in the other case was
+  missing a level of indirection to actually store the value in the
+  caller.
+
+- VectorGet does not specify what to do if the index is out of
+  bounds. A possibility is to expand the array if the index is >=
+  current length.  But then there's no good way to handle an error if
+  the expansion fails since returning NULL in this case is not
+  distinguishable from a ordinary value, yet the singificance is
+  entirely different.  So the specification was modified to require
+  that the index in VectorGet must be within the current bounds of the
+  array.
+
+- Test program never checks malloc or VectorSet results for failures.
+  Add tests and quit if either fail.
+
+- Test program stores pointers to new ints in a vector then prints
+  them, but it never initializes the ints it allocates, so it prints
+  garbage.  Any initialization is ok - this version stores i in the
+  ith int in the vector.
+
+- Fix memory leaks in main program.  It never frees the vector nor the 
+  ints stored in it.
+
+Code improvements, comments, minor fixes
+
+- Use <...> on system headers in #includes, and delete unnecessary
+  #includes.
+
+- The code uses uint32_t and size_t in various places for array sizes
+  and locations.  There should be only one type for this, either
+  uint64_t (since we're on a 64-bit system) or size_t (which is good
+  enough for this exercise).  Picked size_t arbitrarily.
+
+- Fixed PrintIntVector spec in test program to say it assumes all
+  elements in the vector have type *int and are initialized
+  accordingly.  A better version of this function would at least print
+  something appropriate if a NULL value is encountered, but the code
+  was left alone after documenting it.
+
+- Picked better name for the vector size constant in main instead of
+  N, and introduced second constant for initial size of the vector.
+
+- Add asserts to verify parameters to several functions.  However, no
+  need to check index parameters since these have an unsigned type
+  (size_t), so they cannot be negative.
+
+Not changed
+
+- Names like vector_t were left as-is from the original code rather
+  than changing capitalization, etc.

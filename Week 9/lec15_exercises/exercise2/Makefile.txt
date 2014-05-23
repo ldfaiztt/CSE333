@@ -1,0 +1,18 @@
+CC = g++
+LDFLAGS = -L../exercise1 -lex1
+CFLAGS = -g -Wall -I../exercise1
+HEADERS = ShapeWrapper.h
+OBJS = exercise2.o ShapeWrapper.o
+
+all: exercise2
+
+exercise2: clean $(OBJS) $(HEADERS)
+	$(CC) -o exercise2 $(OBJS) $(LDFLAGS)
+
+%.o: %.cc $(HEADERS)
+	$(CC) $(CFLAGS) -c $<
+
+clean: FORCE
+	/bin/rm -f *.o *~ exercise2
+
+FORCE:

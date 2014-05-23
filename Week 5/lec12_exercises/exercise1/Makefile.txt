@@ -1,0 +1,23 @@
+CC = g++
+CFLAGS = -g -Wall
+HEADERS = GetWord.h Histogram.h
+OBJS = GetWord.o Histogram.o exercise1.o
+
+all: exercise1 data graph
+
+exercise1: clean $(OBJS) $(HEADERS)
+	$(CC) -o exercise1 $(OBJS) $(LDFLAGS)
+
+data: FORCE exercise1
+	./exercise1 ./warandpeace.txt > histdata.txt
+
+graph: FORCE data exercise1
+	echo 'set log xy; plot "histdata.txt" using 2 title "Word popularity"' | gnuplot -persist
+
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $<
+
+clean: FORCE
+	/bin/rm -f *.o *~ exercise1 histdata.txt
+
+FORCE:

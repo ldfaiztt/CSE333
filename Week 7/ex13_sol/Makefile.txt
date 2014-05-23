@@ -1,0 +1,11 @@
+SOURCES = SocketUtil.cc netcopy.cc
+
+all: ex13
+
+ex13: $(SOURCES)
+	g++ -g -Wall -o $@ $^
+
+clean: FORCE
+	/bin/rm -f -r *~ *.o ex13 ex13.dSYM
+
+FORCE:

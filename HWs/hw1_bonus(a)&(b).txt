@@ -1,0 +1,95 @@
+Chun-Wei Chen
+1267040
+mijc0517@cs
+07/08/13
+
+g++ -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c test_linkedlist.cc
+g++ -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c test_hashtable.cc
+g++ -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c test_suite.cc
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c -std=c99 LinkedList.c
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c -std=c99 HashTable.c
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c -std=c99 Assert333.c
+ar rcs libhw1.a LinkedList.o HashTable.o Assert333.o
+g++ -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -o test_suite test_linkedlist.o test_hashtable.o test_suite.o \
+-L../gtest -lgtest -L. -lhw1 -fprofile-arcs -ftest-coverage -lpthread -L. -lhw1 -fprofile-arcs -ftest-coverage
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c -std=c99 example_program_ll.c
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -o example_program_ll example_program_ll.o -L. -lhw1 -fprofile-arcs -ftest-coverage
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -c -std=c99 example_program_ht.c
+gcc -g -Wall -I. -I.. -O0 -fprofile-arcs -ftest-coverage -o example_program_ht example_program_ht.o -L. -lhw1 -fprofile-arcs -ftest-coverage
+./test_suite
+[==========] Running 8 tests from 2 test cases.
+[----------] Global test environment set-up.
+HW1: there are 230 points available.
+[----------] 5 tests from Test_LinkedList
+[ RUN      ] Test_LinkedList.TestLinkedListBasic
+ (5/230)
+ (10/230)
+[       OK ] Test_LinkedList.TestLinkedListBasic (0 ms)
+[ RUN      ] Test_LinkedList.TestLinkedListPushPop
+ (20/230)
+ (30/230)
+ (35/230)
+ (45/230)
+ (55/230)
+[       OK ] Test_LinkedList.TestLinkedListPushPop (0 ms)
+[ RUN      ] Test_LinkedList.TestLinkedListAppendSlice
+ (60/230)
+ (65/230)
+ (70/230)
+ (75/230)
+ (80/230)
+[       OK ] Test_LinkedList.TestLinkedListAppendSlice (0 ms)
+[ RUN      ] Test_LinkedList.TestLinkedListSort
+ (85/230)
+[       OK ] Test_LinkedList.TestLinkedListSort (0 ms)
+[ RUN      ] Test_LinkedList.TestLLIteratorBasic
+ (90/230)
+ (95/230)
+ (105/230)
+ (115/230)
+ (125/230)
+ (130/230)
+[       OK ] Test_LinkedList.TestLLIteratorBasic (0 ms)
+[----------] 5 tests from Test_LinkedList (1 ms total)
+
+[----------] 3 tests from Test_HashTable
+[ RUN      ] Test_HashTable.HTSTestAllocFree
+ (140/230)
+[       OK ] Test_HashTable.HTSTestAllocFree (0 ms)
+[ RUN      ] Test_HashTable.HTSTestInsertLookupRemove
+ (150/230)
+ (160/230)
+[       OK ] Test_HashTable.HTSTestInsertLookupRemove (1 ms)
+[ RUN      ] Test_HashTable.HTSTestIterator
+ (170/230)
+ (180/230)
+ (200/230)
+ (210/230)
+ (220/230)
+ (230/230)
+[       OK ] Test_HashTable.HTSTestIterator (1 ms)
+[----------] 3 tests from Test_HashTable (2 ms total)
+
+[----------] Global test environment tear-down
+
+You earned 230 out of 230 points available (100%)
+
+[==========] 8 tests from 2 test cases ran. (4 ms total)
+[  PASSED  ] 8 tests.
+
+(a)
+gcov LinkedList.c
+File 'LinkedList.c'
+Lines executed:97.10% of 207
+Creating 'LinkedList.c.gcov'
+
+gcov HashTable.c
+File 'HashTable.c'
+Lines executed:81.36% of 236
+Creating 'HashTable.c.gcov'
+
+Look at LinkedList.c.gcov and HashTable.c.gov for coverage data.
+
+(b)
+97.10% for LinkedList.c and 81.36% for HashTable.c
+It's obvious that the code coverage for HashTable is worse than that for the LinkedList.

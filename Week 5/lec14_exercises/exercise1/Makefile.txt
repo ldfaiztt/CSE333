@@ -1,0 +1,17 @@
+CC = g++
+CFLAGS = -g -Wall
+HEADERS = Query.h PhrasedQuery.h
+OBJS = Query.o PhrasedQuery.o
+
+all: exercise1
+
+exercise1: clean exercise1.o $(OBJS) $(HEADERS)
+	$(CC) -o exercise1 exercise1.o $(OBJS) $(LDFLAGS)
+
+%.o: %.cc $(HEADERS)
+	$(CC) $(CFLAGS) -c $<
+
+clean: FORCE
+	/bin/rm -f *.o *~ exercise1
+
+FORCE:

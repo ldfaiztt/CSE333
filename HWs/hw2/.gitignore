@@ -1,0 +1,4 @@
+libhw2.a
+test_suite
+searchshell
+*.o

@@ -1,0 +1,20 @@
+CC = g++
+CFLAGS = -g -Wall
+HEADERS = Circle.h Shape.h Triangle.h Square.h
+OBJS = Circle.o Shape.o Triangle.o Square.o
+
+all: exercise1 libex1.a
+
+libex1.a: clean $(OBJS) $(HEADERS)
+	ar rcs libex1.a $(OBJS)
+
+exercise1: clean exercise1.o $(OBJS) $(HEADERS)
+	$(CC) -o exercise1 exercise1.o $(OBJS) $(LDFLAGS)
+
+%.o: %.cc $(HEADERS)
+	$(CC) $(CFLAGS) -c $<
+
+clean: FORCE
+	/bin/rm -f *.o *~ exercise1 libex1.a
+
+FORCE:

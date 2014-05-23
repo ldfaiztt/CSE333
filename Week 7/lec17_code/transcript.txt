@@ -1,0 +1,15 @@
+# do some "forward" DNS lookups.  "man dig"
+
+dig www.google.com
+dig @ns1.google.com www.google.com
+dig any @ns1.google.com google.com
+dig any @june.cs.washington.edu cs.washington.edu
+
+# do a reverse DNS lookup
+dig -x 128.95.4.1
+
+# run a trace of the DNS lookup path, disabling recursion as a side-effect
+dig +trace www.cs.washington.edu
+
+# run netcat to open a listening socket on port 5543
+nc -l 5543

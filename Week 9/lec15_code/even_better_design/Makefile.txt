@@ -1,0 +1,15 @@
+HEADERS = Stock.h DividendStock.h
+OBJS = Stock.o DividendStock.o useassets.o
+
+all: useassets
+
+useassets: $(OBJS)
+	g++ -g -Wall -std=gnu++0x -o $@ $^
+
+.cc.o: $(HEADERS)
+	g++ -g -Wall -std=gnu++0x -c $<
+
+clean: FORCE
+	/bin/rm -f *~ *.o useassets
+
+FORCE:
